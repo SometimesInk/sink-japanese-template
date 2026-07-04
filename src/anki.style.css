@@ -1,30 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&family=Shippori+Mincho&family=Zen+Antique&family=Zen+Old+Mincho&display=swap');
 
 :root {
+  --background: lightgray;
+
+  --text-color: black;
+  --text-size: 1.5rem;
+  --heading-size: 2.5rem;
+  --furigana-size: 1rem;
+
   --svg-divisor: 1.5;
   --svg-path-color: black;
   --svg-stroke-width: 3px;
   --svg-final-fill: white;
   --svg-circle-fill: black;
   --svg-text-color: black;
-  --svg-text-size: 1.5em;
+  --svg-text-size: 1.5rem;
 }
 
 .hr {
   text-align: center;
-  border-bottom: 3px solid black;
-  border-radius: 2%;
   line-height: 0;
 
   margin-top: 1em;
   margin-bottom: 1em;
 
-  margin-left: 3em;
-  margin-right: 3em;
-
-  filter: blur(.4px);
-
-  font-size: .5em;
+  font-size: 1em;
 }
 
 .page {
@@ -35,34 +35,28 @@
 
 .box {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  align-items: stretch;
+  flex-direction: column;
 
   max-width: 400px;
   min-width: min(400px, 90%);
-
-  max-height: 400px;
   min-height: min(400px, 90%);
 
   border-radius: 3px;
-  background: lightgray;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  background: var(--background);
 
   /* Define fallback fonts for rare CJK characters */
   font-family: "Shippori Mincho", "Noto Serif JP", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-size: 1rem;
+  font-size: var(--text-size);
+  color: var(--text-color);
 }
 
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
 }
 
 .vertical {
@@ -77,11 +71,11 @@
 
 .kanji {
   font-family: "Zen Antique", "Noto Serif JP", serif;
-  font-size: 1.5rem;
+  font-size: var(--heading-size);
 }
 
 .kanji rt {
-  font-size: 1rem;
+  font-size: var(--furigana-size);
   margin-left: .2em;
   margin-top: .2em;
   margin-bottom: .2em;
@@ -89,10 +83,11 @@
 
 .bottom {
   display: flex;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: .5em;
+  gap: 2em;
 }
 
 /* Pitch accent graph */
@@ -101,77 +96,68 @@
   list-style-type: none;
 }
 
-.bottom svg {
-  height: calc(75px / var(--svg-divisor)) !important;
-  width: auto !important;
-}
+/*
+ * Only apply style on jj graphs (because only them have been tested)
+ */
+.bottom svg:not([focusable*="false"]) {
 
-.bottom svg text[style*="fill:#000"]{
-  fill: var(--svg-text-color) !important;
-  font-size: var(--svg-text-size) !important;
-  font-family: "Zen Old Mincho", serif !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
+  .bottom svg {
+    height: calc(75px / var(--svg-divisor)) !important;
+    width: auto !important;
+  }
 
-.bottom svg text[style*="fill:currentColor"]{
-  fill: var(--svg-text-color) !important;
-  font-size: var(--svg-text-size) !important;
-  font-family: "Zen Old Mincho", serif !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
+  .bottom svg text[style*="fill:#000"]{
+    fill: var(--svg-text-color) !important;
+    font-size: var(--svg-text-size) !important;
+    font-family: "Zen Old Mincho", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+  }
 
-.bottom svg path[style*="stroke:#000"] {
-  stroke: var(--svg-path-color) !important;
-  stroke-width: var(--svg-stroke-width) !important;
-}
+  .bottom svg text[style*="fill:currentColor"]{
+    fill: var(--svg-text-color) !important;
+    font-size: var(--svg-text-size) !important;
+    font-family: "Zen Old Mincho", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+  }
 
-.bottom svg path[style*="stroke:currentColor"] {
-  stroke: var(--svg-path-color) !important;
-  stroke-width: var(--svg-stroke-width) !important;
-}
+  .bottom svg path[style*="stroke:#000"] {
+    stroke: var(--svg-path-color) !important;
+    stroke-width: var(--svg-stroke-width) !important;
+  }
 
-.bottom svg circle[style*="fill:#000"] {
-  fill: var(--svg-circle-fill) !important;
-}
+  .bottom svg path[style*="stroke:currentColor"] {
+    stroke: var(--svg-path-color) !important;
+    stroke-width: var(--svg-stroke-width) !important;
+  }
 
-.bottom svg circle[style*="fill:currentColor"] {
-  fill: var(--svg-circle-fill) !important;
-}
+  .bottom svg circle[style*="fill:#000"] {
+    fill: var(--svg-circle-fill) !important;
+  }
 
-.bottom svg circle[style*="fill:#fff"] {
-  fill: var(--svg-final-fill) !important;
-}
+  .bottom svg circle[style*="fill:currentColor"] {
+    fill: var(--svg-circle-fill) !important;
+  }
 
-.bottom svg circle[stroke="currentColor"] {
-  stroke: var(--svg-circle-fill) !important;
-  stroke-width: var(--svg-stroke-width) !important;
-  fill: var(--svg-final-fill) !important;
+  .bottom svg circle[style*="fill:#fff"] {
+    fill: var(--svg-final-fill) !important;
+  }
+
+  .bottom svg circle[stroke="currentColor"] {
+    stroke: var(--svg-circle-fill) !important;
+    stroke-width: var(--svg-stroke-width) !important;
+    fill: var(--svg-final-fill) !important;
+  }
+
 }
 
 /* Customize anki audio button */
-.replay-button svg, .replaybutton svg {
-  display: none !important;
-}
-
-.replay-button, .replaybutton {
-  display: inline-block;
-  text-decoration: none !important;
-  color: black !important;
-  font-size: 1em;
-}
-
-.replay-button::before, .replaybutton::before {
-  content: "㋔";
-}
-
-#hidden-audio {
+.native {
   display: none !important;
 }
 
 .audio {
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: .5rem;
+  font-size: 2rem;
 }

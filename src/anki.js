@@ -21,7 +21,6 @@ function pitch(svg) {
   return accent;
 }
 */
-
 function playCardAudio() {
   // Find native anki button and click it
   var nativeBtn = document.querySelector('#hidden-audio .replay-button, #hidden-audio .replaybutton');
@@ -31,19 +30,31 @@ function playCardAudio() {
   }
 }
 
-function hideCardAudio() {
-  var nativeBtn = document.querySelector('.replay-button, .replaybutton');
-  if (nativeBtn) {
-    nativeBtn.id = 'hidden-audio';
+function parsePartOfSpeech(input) {
+  const mapping = {
+    "Godan verb": "五段",
+  };
+
+  document.querySelector('.page').innerHTML += input;
+  if (!(input in mapping)) return null;
+  return mapping[input];
+}
+
+/* Relays */
+
+function relayPartOfSpeech() {
+  let pos = parsePartOfSpeech(document.querySelector('.part-of-speech').textContent);
+  if (pos != null) {
+    document.querySelector('.kanji').innerHTML += `【${pos}】`;
   }
 }
 
-function giveAudioRelay() {
+function relayAudio() {
   var newBtn = document.querySelector('.audio');
   newBtn.addEventListener("click", playCardAudio);
 }
 
 window.onload = () => {
-  hideCardAudio();
-  giveAudioRelay();
+  relayAudio();
+  relayPartOfSpeech();
 }
