@@ -23,10 +23,11 @@ function pitch(svg) {
 */
 function playCardAudio() {
   // Find native anki button and click it
-  var nativeBtn = document.querySelector('#hidden-audio .replay-button, #hidden-audio .replaybutton');
-  alert("a");
+  var nativeBtn = document.querySelector('.replay-button, .replaybutton');
   if (nativeBtn) {
     nativeBtn.click();
+  } else {
+    let audio = document.getElementsByTagName('audio')[0].play();
   }
 }
 
@@ -35,7 +36,6 @@ function parsePartOfSpeech(input) {
     "Godan verb": "五段",
   };
 
-  document.querySelector('.page').innerHTML += input;
   if (!(input in mapping)) return null;
   return mapping[input];
 }
@@ -50,11 +50,21 @@ function relayPartOfSpeech() {
 }
 
 function relayAudio() {
-  var newBtn = document.querySelector('.audio');
-  newBtn.addEventListener("click", playCardAudio);
+  console.log("Audio relayed");
+  document.querySelector(".audio").addEventListener("click", playCardAudio);
 }
 
-window.onload = () => {
-  relayAudio();
-  relayPartOfSpeech();
+function relayTimer() {
+  // Find back side of card
+  const intervalId = setInterval(() => {
+    if (document.querySelector(".sink-japanese-template-back") != null) {
+      relayAudio();
+      clearInterval(intervalId);
+    }
+  }, 250);
 }
+
+(function() {
+  relayPartOfSpeech();
+  relayTimer();
+})();

@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="anki.style.css">
   </head>
   <body>
+    <div style="display:none;" class="replay-button" onclick="alert('Audio played')"></div>
     <!-- Anki card content here -->
 
+    <span style="display:none;" class="sink-japanese-template-back"></span>
     <div class="page" lang="ja">
       <div class="box">
         <div class="container">
@@ -22,7 +24,7 @@
             <div class="hr">
               <span>❦</span>
             </div>
-            <div class"definition">{{Meaning}}</div>
+            <div class="definition">{{Meaning}}</div>
             <div class="hr">
               <span>❦</span>
             </div>
@@ -30,7 +32,7 @@
           </div>
         </div>
         <div class="bottom">
-          <div class="audio"><span>㋔</span></div>
+          <div class="audio">㋔</div>
         </div>
       </div>
     </div>
