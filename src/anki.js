@@ -54,17 +54,34 @@ function relayAudio() {
   document.querySelector(".audio").addEventListener("click", playCardAudio);
 }
 
+function checkCounter() {
+  let counter = document.querySelector(".sink-japanese-template-counter");
+
+  // Check counter
+  if (counter.textContent != 1) {
+    alert("Not one: " + counter.textContent);
+    return false;
+  }
+  alert("One");
+  counter.textContent = parseInt(counter.textContent) + 1; // Increase counter
+  return true;
+}
+
 function relayTimer() {
   // Find back side of card
   const intervalId = setInterval(() => {
     if (document.querySelector(".sink-japanese-template-back") != null) {
+      if (checkCounter() == false) {
+        clearInterval(intervalId);
+        return;
+      }
       relayAudio();
+      relayPartOfSpeech();
       clearInterval(intervalId);
     }
   }, 250);
 }
 
 (function() {
-  relayPartOfSpeech();
   relayTimer();
 })();
