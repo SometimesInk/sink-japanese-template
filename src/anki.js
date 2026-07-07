@@ -59,10 +59,10 @@ function checkCounter() {
 
   // Check counter
   if (counter.textContent != 1) {
-    console("Not one: " + counter.textContent);
+    console.log("Not one: " + counter.textContent);
     return false;
   }
-  console("One");
+  console.log("One");
   counter.textContent = parseInt(counter.textContent) + 1; // Increase counter
   return true;
 }
