@@ -17,11 +17,32 @@
         <div class="container">
           <div class="vertical word">
             <span class="kanji">
+              {{#Prefix}}
+              {{Prefix}}
+              {{/Prefix}}
+
+              {{#Furigana}}
               {{furigana:Furigana}}
+              {{/Furigana}}
+              {{^Furigana}}
+              {{Word}}
+              {{/Furigana}}
+
+              {{#Suffix}}
+              {{Suffix}}
+              {{/Suffix}}
+
+              {{#Alternates}}
+              ［{{Alternates}}］
+              {{/Alternates}}
+
+              {{^Part of Speech}}
+              {{furigana:Extra}}
+              {{/Part of Speech}}
             </span>
           </div>
           <div>
-            <div class="expression">{{furigana:Reading}}</div>
+            <div class="expression expression-back">{{furigana:Reading}}</div>
             <div class="hr">
               <span>❦</span>
             </div>
@@ -33,6 +54,9 @@
           </div>
         </div>
         <div class="bottom">
+          {{Notes 1}}
+          {{Notes 2}}
+          {{Notes 3}}
           <div class="audio">㋔</div>
         </div>
       </div>
@@ -40,6 +64,7 @@
     <div class="native">
       <span class="part-of-speech">{{Part of Speech}}</span>
       {{Word Audio}}
+      <span class="tags">{{Tags}}</span>
     </div>
     <script src="anki.js"></script>
 

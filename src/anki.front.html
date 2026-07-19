@@ -16,16 +16,25 @@
         <div class="container">
           <div class="vertical word">
             <span class="kanji">
+              {{#Prefix}}
+              {{Prefix}}
+              {{/Prefix}}
+
               {{Word}}
+
+              {{#Suffix}}
+              {{Suffix}}
+              {{/Suffix}}
             </span>
           </div>
           <div>
-            <div class="expression">{{Expression}}</div>
+            <div class="expression expression-front">{{Expression}}</div>
           </div>
         </div>
       </div>
     </div>
     <div class="native">
+      <span class="tags">{{Tags}}</span>
     </div>
     <script src="anki.js"></script>
 

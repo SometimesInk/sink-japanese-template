@@ -34,6 +34,10 @@ function playCardAudio() {
 function parsePartOfSpeech(input) {
   const mapping = {
     "Godan verb": "五段",
+    "Ichidan verb": "一段",
+    "Suru verb": "する動詞",
+    "Zuru verb": "ずる動詞",
+    "I-adjective": "形容詞",
   };
 
   if (!(input in mapping)) return null;
@@ -79,9 +83,19 @@ function relayTimer() {
       relayPartOfSpeech();
       clearInterval(intervalId);
     }
-  }, 250);
+  }, 125);
+}
+
+function hideSentence() {
+  let tags = document.querySelector(".tags").textContent.split(" ");
+  console.log("tags: " + tags);
+  if (tags.includes("sink-sentence")) return;
+
+  // Hide sentence
+  document.querySelector(".expression-front").textContent = "";
 }
 
 (function() {
   relayTimer();
+  hideSentence();
 })();
